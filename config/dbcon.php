@@ -58,6 +58,14 @@ $dbconn = new mysqli($db_host, $db_user, $db_password, $db_name);  // la variabl
 - Index : UNIQUE -> Une adresse = un compte
 - commentaire : Adresse email utilisateur
 
+>> telephone
+- type  :    VARCHAR
+        > il peut commencer par 0
+        > il peut contenir un  +
+        > pas de calcul
+- taille : 20
+        > longueur max: 15 chiffres
+
 
 >> password
 - type: VARCHAR  -> Stockage de hash
