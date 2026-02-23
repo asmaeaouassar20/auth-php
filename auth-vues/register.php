@@ -1,5 +1,8 @@
 <?php
+$page_title="Regiter Form";
 include('../includes/header.php');
+include('../includes/navbar.php');
+include('../includes/mail.php');
 ?>
 
 
@@ -41,10 +44,11 @@ include('../includes/header.php');
 
             </div>
         </div>
+        <a class="mt-3 btn btn-outline-warning "  href="../index.php">Home</a>
     </div>
 </div>
 
-
+<?php include('../includes/footer.php'); ?>
 
 
 

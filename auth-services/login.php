@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../config/dbcon.php');
 
 
@@ -19,9 +20,10 @@ if(isset($_POST['login-btn'])){
                 $_SESSION['status']="Incorrect Password";
                 header('Location: ../auth-vues/login.php');
             }else{
+                $_SESSION['authenticated']=TRUE;
                 $_SESSION['status']="You are logged in successfully";
                 $_SESSION['auth_user']= [
-                    'username' => $row['name'],
+                    'username' => $row['username'],
                     'phone' => $row['phone'],
                     'email' => $row['email']
                 ];

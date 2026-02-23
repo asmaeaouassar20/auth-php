@@ -1,0 +1,3 @@
+inscription
+> date d'expiration de token
+> user reçoit email

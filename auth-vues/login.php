@@ -1,16 +1,24 @@
 
 
 <?php
+session_start();
+$page_title="Login Form";
 include('../includes/header.php');
+include('../includes/navbar.php');
 ?>
 
 
 
 <div class="py-5">
-    <div class="container ">
+    <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-6">
                <div class="card">
+                    <?php if(isset($_SESSION['status'])) :  ?>
+                        <div class="alert alert-danger">
+                            <h5><?=$_SESSION['status'] ?></h5>
+                        </div>
+                    <?php endif; ?>
                     <h5 class="card-header">Login Form</h5>
                     <div class="card-body">
                         <form method="POST" action="../auth-services/login.php">
@@ -33,5 +41,8 @@ include('../includes/header.php');
 
             </div>
         </div>
+        <a class="mt-3 btn btn-outline-warning "  href="../index.php">Home</a>
     </div>
 </div>
+
+<?php include('../includes/footer.php'); ?>
