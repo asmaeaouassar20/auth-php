@@ -14,8 +14,8 @@ include('../includes/navbar.php');
         <div class="row d-flex justify-content-center">
             <div class="col-6">
                <div class="card">
-                    <?php if(isset($_SESSION['status'])) :  ?>
-                        <div class="alert alert-danger">
+                    <?php if(isset($_SESSION['status']) && isset($_SESSION['alert'])) :  ?>
+                        <div class="alert alert-<?php echo $_SESSION['alert']; ?>">
                             <h5><?=$_SESSION['status'] ?></h5>
                         </div>
                     <?php endif; ?>

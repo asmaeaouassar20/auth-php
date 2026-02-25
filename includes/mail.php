@@ -32,7 +32,7 @@ function send_email_verify($name, $email){
     $mail->addAddress($email, $name);     //Add a recipient
 
     $token = md5(rand());
-    $date_expiration_token = time();
+    $date_expiration_token = (new DateTime())->modify('+1 minute')->format('Y-m-d H:i:s');
     $lien = "http://localhost/auth-php/auth-services/verifier-email.php?token=$token";
 
     $requete= 'UPDATE users SET token="'.$token.'", date_expiration_token="'.$date_expiration_token.'" WHERE email="'.$email.'"';
@@ -46,11 +46,11 @@ function send_email_verify($name, $email){
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Vérification de votre adresse email';
-    $mail->Body    = "Bonjour, <b>$name</b><br>Cliquez sur le lien pour vérifier votre adresse email et activer votre compte<br><a href=$token>Click me</a>";
+    $mail->Body    = "Bonjour, <b>$name</b><br>Cliquez sur le lien pour vérifier votre adresse email et activer votre compte<br><a href=$lien>Click me</a>";
     $mail->AltBody = "Bonjour,$name\nCliquez sur le lien suivant pour vérifier votre adresse email et activer votre compte : $lien";
 
     $mail->send();
-    $_SESSION['status']="Email envoyé avec succès vérifiez votre boite mail";
+    $_SESSION['status']="Un lien de vérification a été envoyé avec succès à l'adresse ".$email." vérifiez votre boite mail";
     $_SESSION['alert']="success";
 } catch (Exception $e) {
     $_SESSION['status']="Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
